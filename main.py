@@ -1,4 +1,4 @@
-from credentials import credential
+from credentials import *
 from screen import *
 
 def login():
@@ -19,7 +19,7 @@ root.geometry("300x250")
 root.title("Pendataan Barang")
 Label(root, text="").pack()
 frame = Frame(root, bg = "#3bb9eb", bd = 5 )
-frame.pack()
+frame.place(relx = 0.1, rely = 0.1, relwidth = 0.8, relheight = 0.8)
 label1 = Label(frame, text = "Masukkan username dan password", bg = "#3bb9eb")
 label1.pack(side = "top")
 Label(frame, text="", bg = "#3bb9eb").pack()
@@ -29,11 +29,11 @@ unameentry = Entry(frame)
 unameentry.pack()
 label3 = Label(frame, text = "password :", bg = "#3bb9eb")
 label3.pack()
-passentry = Entry(frame)
+passentry = Entry(frame, show = "*")
 passentry.pack()
 Label(frame, text="", bg = "#3bb9eb").pack()
 login_image = PhotoImage(file = 'images/login_button.png')
-login_button = Button(root, image = login_image , command = login, borderwidth = 0)
+login_button = Button(frame, image = login_image , command = login, borderwidth = 5, bg = "#3bb9eb")
 login_button.pack()
 
 root.mainloop()

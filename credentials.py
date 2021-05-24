@@ -13,3 +13,10 @@ class credential:
                     return False
             else:
                 return False
+
+    def changeCredential(self, newUname, newPass):
+        for key in self.data:
+            self.data[newUname] =  self.data[key]
+            del self.data[key]
+        if newPass != "":
+            self.data[newUname] = newPass
