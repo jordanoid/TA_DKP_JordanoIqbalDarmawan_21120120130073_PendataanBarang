@@ -2,21 +2,25 @@ class credential:
     def __init__(self, username, password):
         self.username = username
         self.password = password
-        self.data = {"admin":"admin"}
 
     def check(self):
-        for key in self.data:
-            if key == self.username:
-                if self.data[key] == self.password:
-                    return True
-                else:
-                    return False
+        file = open("login_info.txt", "r")
+        uname_verify = file.readline()
+        pass_verify = file.readline()
+        if self.username+"\n" == uname_verify:
+            if self.password == pass_verify:
+                return True
             else:
                 return False
+        else:
+            return False
+        file.close()
 
-    def changeCredential(self, newUname, newPass):
-        for key in self.data:
-            self.data[newUname] =  self.data[key]
-            del self.data[key]
-        if newPass != "":
-            self.data[newUname] = newPass
+def changeCredential(newUname, newPass):
+    if newUname and newPass == "":
+        pass
+    else:
+        file = open("login_info.txt", "w")
+        file.write(newUname+"\n")
+        file.write(newPass)
+        file.close()
