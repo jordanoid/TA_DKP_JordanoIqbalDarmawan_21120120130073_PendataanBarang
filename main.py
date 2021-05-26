@@ -18,6 +18,7 @@ def login():
 root = Tk()
 
 root.geometry("300x250")
+root.resizable(0,0)
 root.title("Pendataan Barang")
 Label(root, text="").pack()
 frame = Frame(root, bg = "#3bb9eb", bd = 5 )
