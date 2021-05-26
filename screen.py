@@ -62,6 +62,11 @@ def setscreen():
         homescreen()
     ok_button = Button(frame, text = "OK", bg = "#3bb9eb", command = ok)
     ok_button.pack()
+    def back():
+        screen2.destroy()
+        homescreen()
+    back_button = Button(screen2, text = "Back", bg = "#3bb9eb", command = back)
+    back_button.place(relx = 0.7, rely = 0.7)
 
 def listscreen():
     global data
@@ -70,17 +75,17 @@ def listscreen():
     screen3 = Toplevel()
     frame = Frame(screen3, bg = "#3bb9eb", bd = 5 )
     frame.place(relx = 0.1, rely = 0.1, relwidth = 0.8, relheight = 0.8)
-    label1 = Label(frame, text = "Nama barang", bg = "#3bb9eb")
+    label1 = Label(frame, text = "Nama barang", bg = "#3bb9eb", justify = LEFT, anchor = "w", width = 15)
     label1.grid(column = 0, row = 0)
     label2 = Label(frame, text = "Jumlah", bg = "#3bb9eb")
     label2.grid(column = 2, row = 0)
     counter = 1
     for i in data:
-        Label(frame, text = i, bg = "#3bb9eb").grid(column = 0, row = counter)
+        Label(frame, text = i, bg = "#3bb9eb", justify = LEFT, anchor = "w", width = 15).grid(column = 0, row = counter, sticky = W)
         Label(frame, text = data[i], bg = "#3bb9eb").grid(column = 2, row = counter)
         counter += 1
-    def ok():
+    def back():
         screen3.destroy()
         homescreen()
-    ok_button = Button(screen3, text = "Back", bg = "#3bb9eb", command = ok)
-    ok_button.place(relx = 0.7, rely = 0.7)
+    back_button = Button(screen3, text = "Back", bg = "#3bb9eb", command = back)
+    back_button.place(relx = 0.45, rely = 0.7)
