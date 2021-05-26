@@ -64,9 +64,6 @@ def setscreen():
     ok_button.pack()
 
 def listscreen():
-    def ok():
-        screen3.destroy()
-        homescreen()
     global data
     screen1.destroy()
     data = {"bangku" : 10, "meja" : 10, "papan tulis" : 2, "spidol" : 3}
@@ -82,5 +79,8 @@ def listscreen():
         Label(frame, text = i, bg = "#3bb9eb").grid(column = 0, row = counter)
         Label(frame, text = data[i], bg = "#3bb9eb").grid(column = 2, row = counter)
         counter += 1
+    def ok():
+        screen3.destroy()
+        homescreen()
     ok_button = Button(screen3, text = "Back", bg = "#3bb9eb", command = ok)
     ok_button.place(relx = 0.7, rely = 0.7)
