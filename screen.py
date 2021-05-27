@@ -178,8 +178,6 @@ def editscreen():
                 del data[nama]
         else:
             messagebox.showinfo("Error!", "Isi kotak dengan benar!") 
-
-    screen1.destroy()
     screen4 = Toplevel()
     screen4.geometry("400x300")
     frame = Frame(screen4, bg = "#3bb9eb", bd = 5 )
