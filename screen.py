@@ -183,6 +183,7 @@ def editscreen():
                 messagebox.showinfo("Error!", "Barang tidak ada! Masukan nama dengan benar!")
             else:
                 del data[nama]
+                messagebox.showinfo("", "Barang berhasil dihapus") 
             barang.delete(0, END)
         else:
             messagebox.showinfo("Error!", "Isi kotak dengan nama barang!") 
