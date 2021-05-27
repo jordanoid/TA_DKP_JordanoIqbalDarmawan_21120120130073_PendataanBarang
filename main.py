@@ -14,6 +14,8 @@ def login():
 
     else:
         messagebox.showinfo("", "Login gagal")
+    unameentry.delete(0, END)
+    passentry.delete(0, END)
 
 root = Tk()
 

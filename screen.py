@@ -79,8 +79,9 @@ def setscreen():
         newUname = uname.get()
         newPass = pw.get()
         changeCredential(newUname, newPass)
-        screen2.destroy()
-        homescreen()
+        uname.delete(0, END)
+        pw.delete(0, END)
+        messagebox.showinfo("", "username dan password berhasil diubah!")
     ok_button = Button(frame, text = "OK", bg = "#3bb9eb", borderwidth = 5, command = ok)
     ok_button.pack()
     def back():
@@ -148,10 +149,13 @@ def editscreen():
                 else:
                     data[nama] = qty
                     messagebox.showinfo("Success!", "Data barang berhasil ditambahkan!")
+                    barang.delete(0, END)
+                    jumlah.delete(0, END)
             else:
                 messagebox.showinfo("Error!", "Isi kotak nama!")
         except:
             messagebox.showinfo("Error!", "Isi kotak jumlah dengan angka!")
+            jumlah.delete(0, END)
 
 
     def change():
@@ -164,10 +168,13 @@ def editscreen():
                 else:
                     data[nama] = qty
                     messagebox.showinfo("Success!", "Data barang berhasil diubah!")
+                    barang.delete(0, END)
+                    jumlah.delete(0, END)
             else:
                 messagebox.showinfo("Error!", "Isi kotak dengan benar!")
         except:
             messagebox.showinfo("Error!", "Isi kotak jumlah dengan angka!")
+            jumlah.delete(0, END)
 
     def delete():
         nama = str(barang2.get())
@@ -176,8 +183,9 @@ def editscreen():
                 messagebox.showinfo("Error!", "Barang tidak ada! Masukan nama dengan benar!")
             else:
                 del data[nama]
+            barang.delete(0, END)
         else:
-            messagebox.showinfo("Error!", "Isi kotak dengan benar!") 
+            messagebox.showinfo("Error!", "Isi kotak dengan nama barang!") 
     screen4 = Toplevel()
     screen4.geometry("400x300")
     frame = Frame(screen4, bg = "#3bb9eb", bd = 5 )
