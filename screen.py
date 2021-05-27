@@ -22,6 +22,7 @@ def homescreen():
     global stg_image
     global list_image
     global edit_image
+    global exit_image
     global screen1
     screen1 = Toplevel()
     screen1.geometry("400x300")
@@ -48,6 +49,13 @@ def homescreen():
     edit_button.place(relx = 0.39, rely = 0.3)
     edit_label = Label(frame, text = "Ubah Daftar", bg = "#3bb9eb")
     edit_label.place(relx = 0.4, rely = 0.65)
+
+    def exit():
+        screen1.destroy()
+
+    exit_image = PhotoImage(file = "images/exit_button.png")
+    exit_button = Button(frame, image = exit_image, borderwidth = 5, command = exit, bg = "#3bb9eb")
+    exit_button.place(relx = 0.48, rely = 0.9)
 
 def setscreen():
     screen1.destroy()
@@ -114,7 +122,7 @@ def listscreen():
 
     table.pack()
 
-    #sitem table (old)
+    #sitem tabel (old)
 
     # label1 = Label(frame, text = "Nama barang", bg = "#3bb9eb", justify = LEFT, anchor = "w", width = 15)
     # label1.grid(column = 0, row = 0)
@@ -135,32 +143,45 @@ def listscreen():
 def editscreen():
 
     def add():
-        nama = str(barang.get())
-        qty = int(jumlah.get())
+        try:
+            nama = str(barang.get())
+            qty = int(jumlah.get())
+            if nama and qty != "":
+                if nama in data:
+                    messagebox.showinfo("Error!", "Barang sudah ada! Gunakan tombol Ubah!")
+                else:
+                    data[nama] = qty
+                    messagebox.showinfo("Success!", "Data barang berhasil ditambahkan!")
+            else:
+                messagebox.showinfo("Error!", "Isi kotak nama!")
+        except:
+            messagebox.showinfo("Error!", "Isi kotak jumlah dengan angka!")
 
-        if nama in data:
-            messagebox.showinfo("Error!", "Barang sudah ada! Gunakan tombol Ubah.")
-        else:
-            data[nama] = qty
-            messagebox.showinfo("Success!", "Data barang berhasil ditambahkan!")
 
     def change():
-        nama = str(barang.get())
-        qty = int(jumlah.get())
+        try:
+            nama = str(barang.get())
+            qty = int(jumlah.get())
+            if nama and qty != "":
+                if nama not in data:
+                    messagebox.showinfo("Error!", "Barang tidak ada! Gunakan tombol Tambah!")
+                else:
+                    data[nama] = qty
+                    messagebox.showinfo("Success!", "Data barang berhasil diubah!")
+            else:
+                messagebox.showinfo("Error!", "Isi kotak dengan benar!")
+        except:
+            messagebox.showinfo("Error!", "Isi kotak jumlah dengan angka!")
 
-        if nama not in data:
-            messagebox.showinfo("Error!", "Barang tidak ada! Gunakan tombol Tambah.")
-        else:
-            data[nama] = qty
-            messagebox.showinfo("Success!", "Data barang berhasil diubah!")
-        
     def delete():
         nama = str(barang2.get())
-        if nama not in data:
-            messagebox.showinfo("Error!", "Barang tidak ada! Masukan nama yang benar!")
+        if nama != "":
+            if nama not in data:
+                messagebox.showinfo("Error!", "Barang tidak ada! Masukan nama dengan benar!")
+            else:
+                del data[nama]
         else:
-            del data[nama]
-            messagebox.showinfo("Success!", "Data barang berhasil dihapus!")
+            messagebox.showinfo("Error!", "Isi kotak dengan benar!") 
 
     screen1.destroy()
     screen4 = Toplevel()
@@ -200,8 +221,8 @@ def editscreen():
 
     Label(frame, text="", bg = "#3bb9eb").grid(column = 0, row = 9)
 
-    delete_button = Button(frame, text = "Hapus", bg = "#3bb9eb", borderwidth = 5, command = delete)
-    delete_button.grid(column = 0, row = 10, sticky = W)
+    delete_button = Button(screen4, text = "Hapus", bg = "#3bb9eb", borderwidth = 5, command = delete)
+    delete_button.place(relx = 0.12, rely = 0.78)
 
     def back():
         screen4.destroy()
