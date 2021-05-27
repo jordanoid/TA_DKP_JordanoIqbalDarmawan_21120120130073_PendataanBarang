@@ -58,7 +58,6 @@ def homescreen():
     exit_button.place(relx = 0.48, rely = 0.9)
 
 def setscreen():
-    screen1.destroy()
     screen2 = Toplevel()
     screen2.resizable(0,0)
     screen2.geometry("300x250")
@@ -86,12 +85,10 @@ def setscreen():
     ok_button.pack()
     def back():
         screen2.destroy()
-        homescreen()
     back_button = Button(screen2, text = "Back", borderwidth = 5, command = back)
     back_button.pack(side = BOTTOM)
 
 def listscreen():
-    screen1.destroy()
     screen3 = Toplevel()
     screen3.geometry("250x350")
     screen3.resizable(0,0)
@@ -136,7 +133,6 @@ def listscreen():
 
     def back():
         screen3.destroy()
-        homescreen()
     back_button = Button(screen3, text = "Back", borderwidth = 5, command = back)
     back_button.pack()
 
@@ -226,6 +222,5 @@ def editscreen():
 
     def back():
         screen4.destroy()
-        homescreen()
     back_button = Button(screen4, text = "Back", borderwidth = 5, command = back)
     back_button.pack(side = BOTTOM)
