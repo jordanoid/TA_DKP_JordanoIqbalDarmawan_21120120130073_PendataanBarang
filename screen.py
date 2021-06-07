@@ -139,6 +139,15 @@ def listscreen():
 
 def editscreen():
 
+    def error_popup(input):
+        if input.isdigit():
+            return True
+        elif input == "":
+            return True
+        else:
+            messagebox.showinfo("", "Masukkan angka!")
+            return False
+
     def add():
         try:
             nama = str(barang.get())
@@ -192,6 +201,8 @@ def editscreen():
     frame = Frame(screen4, bg = "#3bb9eb", bd = 5 )
     frame.place(relx = 0.1, rely = 0.1, relwidth = 0.8, relheight = 0.8)
 
+    validation = frame.register(error_popup)
+
     Label(frame, text = "Tambah/Ubah").grid(column = 0, row = 0, sticky = W)
     label1 = Label(frame, text = "Nama barang", bg = "#3bb9eb", justify = LEFT, anchor = "w", width = 15)
     label1.grid(column = 0, row = 1, sticky = W)
@@ -202,7 +213,7 @@ def editscreen():
 
     label2 = Label(frame, text = "Jumlah", bg = "#3bb9eb", justify = LEFT, anchor = "w", width = 15)
     label2.grid(column = 2, row = 1, sticky = W)
-    jumlah = Entry(frame)
+    jumlah = Entry(frame, validate = "key", validatecommand=(validation, '%P'))
     jumlah.grid(column = 2, row = 2)
 
     add_button = Button(screen4, text = "Tambah", bg = "#3bb9eb", borderwidth = 5, command = add)
